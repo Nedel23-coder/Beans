@@ -55,6 +55,7 @@
 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
 import HeroSection from "./components/HeroSection";
+import FooterSection from "./components/FooterSection";
 
 
 export default function App(){
@@ -65,6 +66,7 @@ export default function App(){
                 <HeroSection/>
             </div>
         </section>
+        <FooterSection/>
     </div>
     )
 }

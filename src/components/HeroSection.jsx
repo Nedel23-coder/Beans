@@ -188,7 +188,7 @@ export default function HeroSection(){
                     variants="accent"
                     size="lg"
                     className="shadow-lg"
-                    onclick={()=>
+                    onClick={()=>
                         document.getElementById("shop")?.scrollIntoView({behavior: "smooth"})
                     }
                 >
@@ -197,7 +197,7 @@ export default function HeroSection(){
                 <Button
                     variants="outline"
                     size="lg"
-                    onclick={()=>
+                    onClick={()=>
                         document.getElementById("about")?.scrollIntoView({behavior: "smooth"})
                     }
                 >

@@ -148,11 +148,11 @@ const navigation = {
     ]
 };
 
-const currentYear = new DragEvent().getFullYear();
+const currentYear = new Date().getFullYear();
 
 // leaflet map
 
-function locationMap(){
+function LocationMap(){
     const mapRef = useRef(null); // used to call into the div the map draws into
     const mapInstance = useRef(null); // the build map, so we don't call it twice
 
@@ -215,3 +215,77 @@ function locationMap(){
         <div ref={mapRef} className="footer-map" style={{width: "100%", overflow: "hidden"}}/>
     );
 }
+
+export default function FooterSection(){
+    return(
+        <footer className="footer">
+            <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg: px-8 lg:pt-32 2xl:max-w-400">
+                {/* map -- ScrollReveal fades it up into view */}
+                <ScrollReveal animation ="fadeUp">
+                    <LocationMap/>
+                </ScrollReveal>
+                <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
+                    {/* Logo */}
+                    <ScrollReveal animation="fadeUp" className="col-span-2 md:col-span-1 space-y-4">
+                        <img
+                            alt="The Beans Place Logo"
+                            src={logo}
+                            className="h-24 w-auto place-self-center md:place-self-auto"
+                        />
+                        <p className="footer-description justify-self-center text-centerf md:justify-self-auto md:text-left">
+                            Premium coffee beans, roasted to order and
+                            shipped fresh. From our roastery to your cup since 2012.
+                        </p>
+                        <div className="flex gap-x-6 justify-self-center md:justify-self-auto">
+                            {navigation.social.map((item) => (
+                                <a
+                                    key={item.name}
+                                    href={item.href}
+                                    className="text-white/70 transition-colors hover:text-(--amber) duration-200"
+                                    aira-label={item.name}
+                                >
+                                    <item.icon aria-hidden="true" className="size-6"/>
+                                </a>
+                            ))}
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal animation="fadeUp" delay={.1}>
+                        <h4 className="footer-col">Shop</h4>
+                        <ul role="list" className="footer-links mt-4">
+                            {navigation.shop.map((item) => (
+                                <li key={item.name}>
+                                    <a href={item.href}>{item.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollReveal>
+                    <ScrollReveal animation="fadeUp" delay={.2}>
+                        <h4 className="footer-col">Company</h4>
+                        <ul role="list" className="footer-links mt-4">
+                            {navigation.company.map((item) => (
+                                <li key={item.name}>
+                                    <a href={item.href}>{item.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollReveal>
+                    <ScrollReveal animation="fadeUp" delay={.3}>
+                        <h4 className="footer-col">Support</h4>
+                        <ul role="list" className="footer-links mt-4">
+                            {navigation.support.map((item) => (
+                                <li key={item.name}>
+                                    <a href={item.href}>{item.name}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollReveal>
+                </div>
+                <Separator className="mt-16 mb-6"/>
+                <div className="footer-bottom">
+                    <p>&copy; {currentYear} The Beans Place, LLC. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    );
+};
