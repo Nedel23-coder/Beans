@@ -90,3 +90,155 @@
 //      </section>
 
 /* --- YOUR COMPONENT CODE GOES HERE --- */
+import {useEffect, useRef, useState} from "react";
+import imgRedSulawesi from "../assets/Red-Sulawesi-Bag.png";
+import imgUrigacheffe from "../assets/Urigacheffe-Bag.png";
+import imgTanzaniaPeaberry from "../assets/Tanzania-Peaberry-Bag.png";
+import imgPanamaGeisha from "../assets/Panama-Geisha.png";
+import imgVietnameserobusta from "../assets/Vietnamese-Robusta.png";
+import imgBrazilianSantos from "../assets/Brazilian-Santos-Bag.png";
+import imgCostaRicaTarrazu from "../assets/Costa-Rica-Tarrazu-Bag.png";
+import imgGuatemalaAntigua from "../assets/Guatemala-Antigua-Bag.png";
+import imgKenyaAA from "../assets/Kenya-AA-Bag.png";
+import imgSumatraMandheling from "../assets/Sumatra-Mandheling-Bag.png";
+import imgKona from "../assets/Kona-Bag.png";
+import imgJamaicanBlueMountain from "../assets/Jamaican-Blue-Mountain-Bag.png";
+import imgColombianSupremo from "../assets/Colombian-Supremo-Bag.png";
+import imgEthiopianHarrar from "../assets/Ethiopian-Harrar-Bag.png";
+import imgArabianMocha from "../assets/Arabian-Mocha-Bag.png";
+ 
+const row1 = [
+    imgJamaicanBlueMountain,
+    imgEthiopianHarrar,
+    imgGuatemalaAntigua,
+    imgTanzaniaPeaberry,
+    imgColombianSupremo,
+    imgVietnameserobusta,
+    imgKona,
+    imgArabianMocha,
+    imgKenyaAA,
+    imgUrigacheffe,
+    imgSumatraMandheling,
+    imgPanamaGeisha,
+    imgRedSulawesi,
+    imgCostaRicaTarrazu,
+    imgBrazilianSantos
+];
+
+const row2 = [
+    imgKenyaAA,
+    imgSumatraMandheling,
+    imgVietnameserobusta,
+    imgArabianMocha,
+    imgPanamaGeisha,
+    imgGuatemalaAntigua,
+    imgJamaicanBlueMountain,
+    imgColombianSupremo,
+    imgUrigacheffe,
+    imgTanzaniaPeaberry,
+    imgEthiopianHarrar,
+    imgKona,
+    imgRedSulawesi,
+    imgBrazilianSantos,
+    imgCostaRicaTarrazu
+];
+
+ const row3 = [
+    imgGuatemalaAntigua,
+    imgJamaicanBlueMountain,
+    imgEthiopianHarrar,
+    imgKona,
+    imgUrigacheffe,
+    imgTanzaniaPeaberry,
+    imgKenyaAA,
+    imgColombianSupremo,
+    imgVietnameserobusta,
+    imgSumatraMandheling,
+    imgPanamaGeisha,
+    imgArabianMocha,
+    imgRedSulawesi,
+    imgCostaRicaTarrazu,
+    imgBrazilianSantos
+ ];
+
+ // draws one horizontal row
+
+ function ImageRow({images, offset = 0}){ // if not passed down the offset is set at 0
+    // double the list so the row is always wide enough to show no gaps
+    const doubled = [...images,...images]; // passes the images from above and allows for two columns
+
+    return (
+        <div className="carousel-row" style={{transform: `translate3d(${offset}px, 0,0)`}}>
+            {doubled.map((src, index) => (
+                <div className="carousel-card" key={`${index}`}>
+                    <img
+                        src={src}
+                        alt={`Coffee bag ${(index % images.length) + 1}`}
+                        className="carousel-image"
+                        loading="lazy"
+                    />
+                </div>
+            ))}
+        </div>
+    );
+ };
+
+ export default function FeaturesSection(){
+    // useRef stores data between renders so that it does not change
+
+    const sectionRef = useRef(null);
+
+    //useState [currentValue, changesTheCurrentValue] = useState(defaultValues)
+
+    const [offsets, setOffsets] = useState([0,0,0]);
+
+    //useEffect -> runs after our component renders --> usually having to do with something outside React
+
+    useEffect(() => {
+        const handleScroll = () => {
+            //bailout
+            if(!sectionRef.current) return;
+
+            // element position relative to the visible window for the user
+            const rect = sectionRef.current.getBoundingClientRect();
+            const viewH = window.innerHeight;
+
+            // 0 when the section enters the bottom, and 1 when it leavs the top
+            const progress = 1 - rect.bottom / (viewH + rect.height);
+
+            // clamp so it never goes below 0 or above 1
+            const p = Math.max(0, Math.min(1, progress));
+
+            // slide distance scales with the viewport, capped at 600px
+            const range = Math.min(window.innerWidth * 0.5, 600);
+
+            // p (how far scrolled) x range -> how far to slide
+            setOffsets([
+                -p * range,
+                p * range - range,
+                -p * range * 0.7
+            ]);
+        };
+        // run once the rows sit correctly before any scrolling
+
+        handleScroll();
+
+        // {passive: true} --> say that we are not going to call preventDefault();
+
+        window.addEventListener("scroll", handleScroll, {passive: true}); // this will be ran after everything is rendered
+
+        // cleanup function so that it doesnt pass to the next function
+        return () => window.removeEventListener("scroll", handleScroll);
+
+    }, []) // this is a dependency array which allows for a single run after mounting
+
+    return (
+        <section className="carousel-gallery-section" ref={sectionRef}>
+            <div className="carousel-gallery-container">
+                <ImageRow images={row1} offset={offsets[0]}/>
+                <ImageRow images={row2} offset={offsets[1]}/>
+                <ImageRow images={row3} offset={offsets[2]}/>
+            </div>
+        </section>
+    )
+};

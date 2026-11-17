@@ -56,6 +56,7 @@
 /* --- YOUR COMPONENT CODE GOES HERE --- */
 import HeroSection from "./components/HeroSection";
 import FooterSection from "./components/FooterSection";
+import FeaturesSection from "./components/FeaturesSection";
 
 
 export default function App(){
@@ -66,7 +67,14 @@ export default function App(){
                 <HeroSection/>
             </div>
         </section>
-        <FooterSection/>
+
+        <section className="features bg-features" id="shop">
+            <FeaturesSection/>
+        </section>
+
+        <section className="bg-footer">
+            <FooterSection/>
+        </section>
     </div>
     )
 }
