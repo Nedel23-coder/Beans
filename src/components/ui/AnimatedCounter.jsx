@@ -18,7 +18,7 @@ export default function AnimatedCounter({ target, duration = 2, suffix = "", pre
 
     }
 
-    return <motion.span ref={ref}>{display}</motion. Span>;
+    return <motion.span ref={ref}>{display}</motion.span>;
 
 }
  

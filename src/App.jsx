@@ -57,6 +57,8 @@
 import HeroSection from "./components/HeroSection";
 import FooterSection from "./components/FooterSection";
 import FeaturesSection from "./components/FeaturesSection";
+import CtaSection from "./components/CtaSection";
+import AboutSection from "./components/AboutSection";
 
 
 export default function App(){
@@ -70,6 +72,14 @@ export default function App(){
 
         <section className="features bg-features" id="shop">
             <FeaturesSection/>
+        </section>
+
+        <section className="bg-cta">
+            <CtaSection/>
+        </section>
+
+        <section className="bg-cta" if="about">
+            <AboutSection/>
         </section>
 
         <section className="bg-footer">
