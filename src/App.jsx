@@ -59,11 +59,13 @@ import FooterSection from "./components/FooterSection";
 import FeaturesSection from "./components/FeaturesSection";
 import CtaSection from "./components/CtaSection";
 import AboutSection from "./components/AboutSection";
+import NavBar from "./components/NavBar";
 
 
 export default function App(){
     return(
     <div className="app">
+        <NavBar/>
         <section className="hero bg-hero">
             <div className="hero-grid">
                 <HeroSection/>
