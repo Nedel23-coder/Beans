@@ -1267,6 +1267,7 @@ a {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 14px 0;
+    cursor: pointer;
 }
 
 .ribbon-track {
