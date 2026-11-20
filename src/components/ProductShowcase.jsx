@@ -179,74 +179,74 @@ const products = [
 ];
 export default function ProductShowcase() {
     return (
-<div className="product-showcase">
+        <div className="product-showcase">
             {/* ===== Header — rising delays build it top-to-bottom ===== */}
-<ScrollReveal animation="fadeUp">
-<Badge variant="accent" className="mb-4">
+        <ScrollReveal animation="fadeUp">
+        <Badge variant="accent" className="mb-4">
                     ☕ Curated Selection
-</Badge>
-</ScrollReveal>
-<ScrollReveal animation="fadeUp" delay={0.1}>
-<h2 className="product-showcase-title">
+        </Badge>
+        </ScrollReveal>
+        <ScrollReveal animation="fadeUp" delay={0.1}>
+            <h2 className="product-showcase-title">
                     Shop Our
-<br />
-<span className="muted">Finest Beans</span>
-</h2>
-</ScrollReveal>
+                <br />
+                <span className="muted">Finest Beans</span>
+            </h2>
+        </ScrollReveal>
             {/* Decorative divider: mx-auto centres it, max-w-48 caps its width */}
-<ScrollReveal animation="fadeIn" delay={0.15}>
-<Separator className="mx-auto mb-4 max-w-48" />
-</ScrollReveal>
-<ScrollReveal animation="fadeUp" delay={0.15}>
-<p className="product-showcase-subtitle">
+        <ScrollReveal animation="fadeIn" delay={0.15}>
+        <Separator className="mx-auto mb-4 max-w-48" />
+        </ScrollReveal>
+        <ScrollReveal animation="fadeUp" delay={0.15}>
+            <p className="product-showcase-subtitle">
                     Hand-selected single-origin coffees, roasted to order. Each bag ships within 48
                     hours of roasting for maximum freshness.
-</p>
-</ScrollReveal>
+            </p>
+        </ScrollReveal>
             {/* ===== Product grid — cards cascade in 0.1s apart ===== */}
-<StaggerContainer staggerDelay={0.1} className="product-grid">
+        <StaggerContainer staggerDelay={0.1} className="product-grid">
                 {products.map((product) => (
                     // key must be unique — React uses it to track list items
-<StaggerItem key={product.name} animation="fadeUp">
-<motion.div
-                            className="product-card"
-                            // Lift 8px while hovered, so the card feels clickable
-                            whileHover={{ y: -8, transition: { duration: 0.25 } }}>
-<div className="product-card-image">
+        <StaggerItem key={product.name} animation="fadeUp">
+    <motion.div
+            className="product-card"
+                // Lift 8px while hovered, so the card feels clickable
+            whileHover={{ y: -8, transition: { duration: 0.25 } }}>
+        <div className="product-card-image">
                                 {/* lazy = don't download until it's near the screen */}
-<img src={product.image} alt={product.name} loading="lazy" />
+            <img src={product.image} alt={product.name} loading="lazy" />
                                 {/* Badge renders only when the product has one */}
                                 {product.badge && (
-<span className="product-badge">{product.badge}</span>
+            <span className="product-badge">{product.badge}</span>
                                 )}
-</div>
-<div className="product-card-info">
+        </div>
+        <div className="product-card-info">
                                 {/* Name left, price right (spaced by CSS) */}
-<div className="product-card-header">
-<h3>{product.name}</h3>
-<span className="product-price">{product.price}</span>
-</div>
+        <div className="product-card-header">
+            <h3>{product.name}</h3>
+            <span className="product-price">{product.price}</span>
+        </div>
                                 {/* Reads as "Kenya · Light Roast" */}
-<p className="product-origin">
+        <p className="product-origin">
                                     {product.origin} · {product.roast} Roast
-</p>
-<p className="product-notes">{product.notes}</p>
-<Button variant="primary" size="sm" className="w-full mt-3">
+        </p>
+        <p className="product-notes">{product.notes}</p>
+        <Button variant="primary" size="sm" className="w-full mt-3">
                                     Add to Cart
-</Button>
-</div>
-</motion.div>
-</StaggerItem>
+        </Button>
+        </div>
+    </motion.div>
+        </StaggerItem>
                 ))}
-</StaggerContainer>
+        </StaggerContainer>
             {/* ===== Footer button ===== */}
-<ScrollReveal animation="fadeUp" delay={0.2}>
-<div className="product-showcase-cta">
-<Button variant="accent" size="lg">
+        <ScrollReveal animation="fadeUp" delay={0.2}>
+            <div className="product-showcase-cta">
+                <Button variant="accent" size="lg">
                         View All Coffee →
-</Button>
-</div>
-</ScrollReveal>
-</div>
+                </Button>
+            </div>
+        </ScrollReveal>
+    </div>
     );
 }
