@@ -121,7 +121,7 @@ export default function NavBar() {
                     <img src={logo} alt="Beans Place Logo" className="logo h-12 w-auto md:h-14"/>
                 </a>
 
-                <nav classNEame="nav-links hidden items-center px-4 gpa-10 md:flex">
+                <nav className="nav-links hidden items-center px-4 gpa-10 md:flex">
                     <a href="#home">HOME    </a>
                     <a href="#shop">     SHOP     </a>
                     <a href="#about">     OUR STORY     </a>
